@@ -1,14 +1,15 @@
 {
-    "name": "iknds",
-    "dockerComposeFile": "docker-compose.yaml",
-    "service": "iknds",
-    "workspaceFolder": "${localWorkspaceFolder}",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "GitHub.copilot",
-                "GitHub.vscode-pull-request-github"
-            ]
-        }
+  "name": "iknds",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "iknds",
+  "workspaceFolder": "${localWorkspaceFolder}",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.vscode-pull-request-github",
+        "esbenp.prettier-vscode"
+      ]
     }
+  }
 }
