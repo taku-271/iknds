@@ -1,0 +1,18 @@
+{
+  "name": "backend",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@prisma/client": "^5.17.0",
+    "@types/bun": "latest",
+    "prisma": "^5.17.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "graphql": "^16.9.0",
+    "graphql-scalars": "^1.23.0",
+    "graphql-yoga": "^5.6.2"
+  }
+}

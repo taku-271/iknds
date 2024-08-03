@@ -1,12 +1,13 @@
-const { ModuleResolutionKind } = require("typescript");
+import { ModuleResolutionKind } from "typescript";
+import pwa from "next-pwa";
 
 /** @type {import('next').NextConfig} */
-const withPWA = require("next-pwa")({
+const withPWA = pwa({
   dest: "public",
   register: true,
   skipWaiting: true,
 });
 
-module.exports = withPWA({
+export default withPWA({
   reactStrictMode: true,
 });
