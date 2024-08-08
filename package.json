@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "run-p dev:*",
     "dev:frontend": "cd packages/frontend && bun run dev",
-    "dev:backend": "cd packages/backend && bun run src/index.ts",
+    "dev:backend": "cd packages/backend && bun run --watch src/index.ts",
     "dev:interface": "cd packages/interface && bun run codegen"
   },
   "devDependencies": {

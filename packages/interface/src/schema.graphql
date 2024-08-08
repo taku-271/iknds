@@ -1,3 +1,44 @@
+scalar DateTime
+
+type User {
+  id: Int!
+  name: String!
+  email: String!
+  password: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  places: [Place]!
+}
+
+type Place {
+  id: Int!
+  title: String!
+  url: String!
+  memo: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  # Todo: 必須にしたい
+  user: User
+}
+
+input UserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input PlaceInput {
+  title: String!
+  url: String!
+  memo: String!
+  userId: Int!
+}
+
 type Query {
-  hello: String!
+  user(id: Int!): User!
+}
+
+type Mutation {
+  createUser(input: UserInput!): User!
+  createPlace(input: PlaceInput!): Place!
 }
