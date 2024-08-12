@@ -1,14 +1,24 @@
-import { ApolloProvider } from "@apollo/client";
 import type { AppProps } from "next/app";
-import { client } from "../libs/graphql-client";
-import { Box } from "@yamada-ui/react";
+import { Box, UIProvider } from "@yamada-ui/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={client}>
-      <Box height="100vh">
-        <Component {...pageProps} />
-      </Box>
-    </ApolloProvider>
+    <UIProvider>
+      <QueryClientProvider client={queryClient}>
+        <Box height="98vh">
+          <Component {...pageProps} />
+        </Box>
+      </QueryClientProvider>
+    </UIProvider>
   );
 }

@@ -1,0 +1,16 @@
+query getUserWithPlace($id: Int!) {
+  user(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+    places {
+      id
+      title
+      url
+      memo
+      createdAt
+      updatedAt
+    }
+  }
+}
