@@ -8,7 +8,9 @@
       "extensions": [
         "GitHub.copilot",
         "GitHub.vscode-pull-request-github",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "Prisma.prisma",
+        "mquandalle.graphql"
       ]
     }
   }
