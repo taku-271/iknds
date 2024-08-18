@@ -9,6 +9,12 @@ const getUser = async (id: number, _ctx: GraphQLContext) => {
   return convertUser(user);
 };
 
+const getUserByEmail = async (email: string, _ctx: GraphQLContext) => {
+  const user = await _ctx.prisma.user.findFirstOrThrow({ where: { email } });
+
+  return convertUser(user);
+};
+
 const createUser = async (input: UserInput, _ctx: GraphQLContext) => {
   const user = await _ctx.prisma.user.create({
     data: {
@@ -33,4 +39,5 @@ const convertUser = (user: User): UserModel => ({
 export const userService = {
   getUser,
   createUser,
+  getUserByEmail,
 };

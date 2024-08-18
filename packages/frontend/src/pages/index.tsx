@@ -17,6 +17,8 @@ import {
   Textarea,
   useDisclosure,
 } from "@yamada-ui/react";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 import { title } from "process";
 import { FormEvent, useState } from "react";
 
@@ -37,6 +39,7 @@ const Index = () => {
   const [newPlace, setNewPlace] = useState<PlaceInput>(initNewPlace);
   const { mutateAsync: createPlace } = useCreatePlaceMutation();
   const [isInValid, setIsInValid] = useState({ title: false, url: false });
+  const { data: session, status } = useSession();
 
   const onPlaceChange = (
     e: FormEvent<HTMLInputElement> | FormEvent<HTMLTextAreaElement>
@@ -74,11 +77,13 @@ const Index = () => {
       justifyContent="center"
       flexDir="column"
     >
-      {placeListLoading ? (
+      {placeListLoading && status === "loading" ? (
         <Loading size="9xl" color="blue.500" variant="puff" />
       ) : (
         <Box display="flex" flexDir="column" alignItems="center" height="100%">
-          <Heading padding="lg">行きたいところリスト</Heading>
+          <Heading padding="lg">
+            {session?.user?.name} さんの行きたいところリスト
+          </Heading>
           <Button
             onClick={onOpenPlaceCreate}
             colorScheme="primary"
