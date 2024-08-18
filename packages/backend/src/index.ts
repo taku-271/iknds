@@ -13,6 +13,9 @@ const yoga = createYoga({
     resolvers,
   }),
   context: createContext(),
+  cors: {
+    origin: "*",
+  },
 });
 
 const server = Bun.serve({

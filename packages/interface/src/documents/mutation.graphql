@@ -3,3 +3,9 @@ mutation createUser($input: UserInput!) {
     id
   }
 }
+
+mutation createPlace($input: PlaceInput!) {
+  createPlace(input: $input) {
+    id
+  }
+}

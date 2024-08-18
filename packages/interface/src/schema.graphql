@@ -30,7 +30,7 @@ input UserInput {
 input PlaceInput {
   title: String!
   url: String!
-  memo: String!
+  memo: String
   userId: Int!
 }
 
