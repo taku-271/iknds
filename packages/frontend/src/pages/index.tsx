@@ -12,6 +12,7 @@ import {
   ReorderItem,
   useDisclosure,
 } from "@yamada-ui/react";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 const Index = () => {
@@ -20,6 +21,7 @@ const Index = () => {
   const [selectedPlace, setSelectedPlace] = useState<User["places"][0] | null>(
     null
   );
+  const { data: session, status } = useSession();
 
   return (
     <Box
@@ -29,11 +31,13 @@ const Index = () => {
       justifyContent="center"
       flexDir="column"
     >
-      {placeListLoading ? (
+      {placeListLoading && status === "loading" ? (
         <Loading size="9xl" color="blue.500" variant="puff" />
       ) : (
         <Box>
-          <Heading padding="lg">行きたいところリスト</Heading>
+          <Heading padding="lg">
+            {session?.user?.name} さんの行きたいところリスト
+          </Heading>
           <Reorder padding="lg">
             {placeList?.places.map((place) => (
               <ReorderItem

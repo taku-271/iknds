@@ -36,6 +36,7 @@ input PlaceInput {
 
 type Query {
   user(id: Int!): User!
+  userByEmail(email: String!): User!
 }
 
 type Mutation {
