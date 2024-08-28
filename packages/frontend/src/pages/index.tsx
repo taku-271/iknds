@@ -18,12 +18,11 @@ import {
   useDisclosure,
 } from "@yamada-ui/react";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
-import { title } from "process";
 import { FormEvent, useState } from "react";
 
 const Index = () => {
-  const { placeList, placeListLoading } = usePlaceList(1);
+  const { data: session, status } = useSession();
+  const { placeList, placeListLoading } = usePlaceList(session?.user?.id);
   const {
     isOpen: isOpenPlaceDetail,
     onOpen: onOpenPlaceDetail,
@@ -39,14 +38,13 @@ const Index = () => {
   const [newPlace, setNewPlace] = useState<PlaceInput>(initNewPlace);
   const { mutateAsync: createPlace } = useCreatePlaceMutation();
   const [isInValid, setIsInValid] = useState({ title: false, url: false });
-  const { data: session, status } = useSession();
 
   const onPlaceChange = (
     e: FormEvent<HTMLInputElement> | FormEvent<HTMLTextAreaElement>
   ) => {
     setNewPlace({
       ...newPlace,
-      userId: 1,
+      userId: session?.user?.id,
       [e.currentTarget.name]: e.currentTarget.value,
     });
   };

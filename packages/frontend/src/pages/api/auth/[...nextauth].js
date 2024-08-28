@@ -48,7 +48,11 @@ export default NextAuth({
   callbacks: {
     jwt: async ({ token, user, account }) => {
       if (user) {
-        const { _password, userWithOutPassword } = user;
+        const { _password, userWithOutPassword } = (
+          await getSdk(await getGraphqlClient()).getUserByEmail({
+            email: user.email,
+          })
+        ).userByEmail;
         token.user = userWithOutPassword;
         token.id = user.id;
       }
