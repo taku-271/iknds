@@ -1,8 +1,8 @@
-import { config } from "dotenv";
-import { createSchema, createYoga } from "graphql-yoga";
-import createContext from "./context";
-import { typeDefs } from "./graphql/typeDefs.generated";
-import { resolvers } from "./graphql/resolvers.generated";
+import { config } from 'dotenv';
+import { createSchema, createYoga } from 'graphql-yoga';
+import createContext from './context';
+import { typeDefs } from './graphql/typeDefs.generated';
+import { resolvers } from './graphql/resolvers.generated';
 
 config();
 
@@ -14,11 +14,11 @@ const yoga = createYoga({
   }),
   context: createContext(),
   cors: {
-    origin: "*",
+    origin: '*',
   },
 });
 
-const server = Bun.serve({
+Bun.serve({
   port: process.env.PORT || 4000,
   fetch: (request) => yoga(request),
 });

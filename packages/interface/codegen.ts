@@ -1,22 +1,18 @@
-import type { CodegenConfig } from "@graphql-codegen/cli";
-import { defineConfig } from "@eddeee888/gcg-typescript-resolver-files";
+import type { CodegenConfig } from '@graphql-codegen/cli';
+import { defineConfig } from '@eddeee888/gcg-typescript-resolver-files';
 
 const config: CodegenConfig = {
-  schema: "./src/schema.graphql",
-  documents: ["./src/documents/**/*.graphql"],
+  schema: './src/schema.graphql',
+  documents: ['./src/documents/**/*.graphql'],
   generates: {
-    "../backend/src/graphql": defineConfig({
-      resolverRelativeTargetDir: "../../backend/src/graphql/resolvers",
+    '../backend/src/graphql': defineConfig({
+      resolverRelativeTargetDir: '../../backend/src/graphql/resolvers',
       typesPluginsConfig: {
-        contextType: "../context#GraphQLContext",
+        contextType: '../context#GraphQLContext',
       },
     }),
-    "../frontend/src/graphql/graphql.ts": {
-      plugins: [
-        "typescript",
-        "typescript-graphql-request",
-        "typescript-operations",
-      ],
+    '../frontend/src/graphql/graphql.ts': {
+      plugins: ['typescript', 'typescript-graphql-request', 'typescript-operations'],
     },
   },
 };

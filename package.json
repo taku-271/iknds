@@ -1,24 +1,42 @@
 {
   "name": "iknds",
   "module": "index.ts",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "run-p dev:*",
     "dev:frontend": "cd packages/frontend && bun run dev",
     "dev:backend": "cd packages/backend && bun run --watch src/index.ts",
-    "dev:interface": "cd packages/interface && bun run codegen"
+    "dev:interface": "cd packages/interface && bun run codegen",
+    "interface": "cd packages/interface && bun run codegen",
+    "build:frontend": "cd packages/frontend && npm run build",
+    "build:backend": "cd packages/backend && npm run build",
+    "deploy:iknds": "cd packages/infra && bunx cdk deploy IkndsStack",
+    "deploy:frontend": "cd packages/infra && bunx cdk deploy IkndsFrontendStack"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "ts-node": "^10.9.2"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.5.4"
   },
   "workspaces": [
     "packages/*"
   ],
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "@types/node": "^22.5.1",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "aws-cdk-lib": "^2.154.1",
+    "cdk-docker-image-deployment": "^0.0.593",
+    "constructs": "^10.3.0",
+    "dotenv": "^16.4.5",
+    "esbuild": "^0.23.1",
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-security": "^3.0.1",
+    "prettier": "^3.3.3",
+    "source-map-support": "^0.5.21"
   }
 }

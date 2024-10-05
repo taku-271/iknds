@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 
 services:
   iknds:
@@ -6,9 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - $PWD:$PWD
+      - aws-cli-volume:/root/.aws
+      - /var/run/docker.sock:/var/run/docker.sock
     working_dir: $PWD
     tty: true
     command: tail -f /dev/null
@@ -25,3 +27,7 @@ services:
       - 3306:3306
     restart: always
     tty: true
+
+volumes:
+  aws-cli-volume:
+    external: true

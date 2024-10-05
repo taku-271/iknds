@@ -1,7 +1,7 @@
-import { useCreatePlaceMutation } from "@/features/placeList/mutation";
-import { usePlaceList } from "@/features/placeList/store";
-import { Place, PlaceInput, User } from "@/graphql/graphql";
-import { QueryClient } from "@tanstack/react-query";
+import { useCreatePlaceMutation } from '@/features/placeList/mutation';
+import { usePlaceList } from '@/features/placeList/store';
+import { Place, PlaceInput, User } from '@/graphql/graphql';
+import { QueryClient } from '@tanstack/react-query';
 import {
   Box,
   Button,
@@ -16,32 +16,22 @@ import {
   ReorderItem,
   Textarea,
   useDisclosure,
-} from "@yamada-ui/react";
-import { useSession } from "next-auth/react";
-import { FormEvent, useState } from "react";
+} from '@yamada-ui/react';
+import { useSession } from 'next-auth/react';
+import { FormEvent, useState } from 'react';
 
 const Index = () => {
   const { data: session, status } = useSession();
   const { placeList, placeListLoading } = usePlaceList(session?.user?.id);
-  const {
-    isOpen: isOpenPlaceDetail,
-    onOpen: onOpenPlaceDetail,
-    onClose: onClosePlaceDetail,
-  } = useDisclosure();
-  const {
-    isOpen: isOpenPlaceCreate,
-    onOpen: onOpenPlaceCreate,
-    onClose: onClosePlaceCreate,
-  } = useDisclosure();
-  const [selectedPlace, setSelectedPlace] = useState<User["places"][0]>(null);
-  const initNewPlace = { title: "", url: "", memo: "", userId: -1 };
+  const { isOpen: isOpenPlaceDetail, onOpen: onOpenPlaceDetail, onClose: onClosePlaceDetail } = useDisclosure();
+  const { isOpen: isOpenPlaceCreate, onOpen: onOpenPlaceCreate, onClose: onClosePlaceCreate } = useDisclosure();
+  const [selectedPlace, setSelectedPlace] = useState<User['places'][0]>(null);
+  const initNewPlace = { title: '', url: '', memo: '', userId: -1 };
   const [newPlace, setNewPlace] = useState<PlaceInput>(initNewPlace);
   const { mutateAsync: createPlace } = useCreatePlaceMutation();
   const [isInValid, setIsInValid] = useState({ title: false, url: false });
 
-  const onPlaceChange = (
-    e: FormEvent<HTMLInputElement> | FormEvent<HTMLTextAreaElement>
-  ) => {
+  const onPlaceChange = (e: FormEvent<HTMLInputElement> | FormEvent<HTMLTextAreaElement>) => {
     setNewPlace({
       ...newPlace,
       userId: session?.user?.id,
@@ -52,10 +42,10 @@ const Index = () => {
   const onPlaceCreate = () => {
     const isInvalid = { title: false, url: false };
 
-    if (newPlace?.title === "") {
+    if (newPlace?.title === '') {
       isInvalid.title = true;
     }
-    if (newPlace?.url === "") {
+    if (newPlace?.url === '') {
       isInvalid.url = true;
     }
     if (!isInvalid.title && !isInvalid.url) {
@@ -68,26 +58,13 @@ const Index = () => {
   };
 
   return (
-    <Box
-      height="100%"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      flexDir="column"
-    >
-      {placeListLoading && status === "loading" ? (
+    <Box height="100%" display="flex" alignItems="center" justifyContent="center" flexDir="column">
+      {placeListLoading && status === 'loading' ? (
         <Loading size="9xl" color="blue.500" variant="puff" />
       ) : (
         <Box display="flex" flexDir="column" alignItems="center" height="100%">
-          <Heading padding="lg">
-            {session?.user?.name} さんの行きたいところリスト
-          </Heading>
-          <Button
-            onClick={onOpenPlaceCreate}
-            colorScheme="primary"
-            width="85%"
-            padding="lg"
-          >
+          <Heading padding="lg">{session?.user?.name} さんの行きたいところリスト</Heading>
+          <Button onClick={onOpenPlaceCreate} colorScheme="primary" width="85%" padding="lg">
             新規作成
           </Button>
           <Reorder padding="lg" layoutScroll>
@@ -116,44 +93,18 @@ const Index = () => {
         success="新規作成"
         onSuccess={onPlaceCreate}
       >
-        <FormControl
-          label="タイトル"
-          isInvalid={isInValid.title}
-          errorMessage="タイトルを入力してください"
-        >
-          <Input
-            type="text"
-            placeholder="例) 映画館"
-            name="title"
-            onChange={(e) => onPlaceChange(e)}
-          />
+        <FormControl label="タイトル" isInvalid={isInValid.title} errorMessage="タイトルを入力してください">
+          <Input type="text" placeholder="例) 映画館" name="title" onChange={(e) => onPlaceChange(e)} />
         </FormControl>
         <FormControl label="メモ">
-          <Textarea
-            placeholder="例) コナンを見る"
-            name="memo"
-            onChange={(e) => onPlaceChange(e)}
-          />
+          <Textarea placeholder="例) コナンを見る" name="memo" onChange={(e) => onPlaceChange(e)} />
         </FormControl>
-        <FormControl
-          label="リンク"
-          isInvalid={isInValid.url}
-          errorMessage="リンクを入力してください"
-        >
-          <Input
-            type="url"
-            placeholder="例) https://example.com"
-            name="url"
-            onChange={(e) => onPlaceChange(e)}
-          />
+        <FormControl label="リンク" isInvalid={isInValid.url} errorMessage="リンクを入力してください">
+          <Input type="url" placeholder="例) https://example.com" name="url" onChange={(e) => onPlaceChange(e)} />
         </FormControl>
       </Dialog>
 
-      <Dialog
-        isOpen={isOpenPlaceDetail}
-        onClose={onClosePlaceDetail}
-        header={selectedPlace?.title}
-      >
+      <Dialog isOpen={isOpenPlaceDetail} onClose={onClosePlaceDetail} header={selectedPlace?.title}>
         <Heading as="h2" fontSize="2xl">
           メモ
         </Heading>
@@ -161,6 +112,9 @@ const Index = () => {
         <Heading as="h2" fontSize="2xl">
           URL
         </Heading>
+        <Box as="a" href={selectedPlace?.url} target="_blank" color="blue.600">
+          {selectedPlace?.url}
+        </Box>
       </Dialog>
     </Box>
   );

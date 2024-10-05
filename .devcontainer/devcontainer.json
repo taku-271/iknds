@@ -10,7 +10,8 @@
         "GitHub.vscode-pull-request-github",
         "esbenp.prettier-vscode",
         "Prisma.prisma",
-        "mquandalle.graphql"
+        "mquandalle.graphql",
+        "amazonwebservices.aws-toolkit-vscode"
       ]
     }
   }

@@ -1,11 +1,7 @@
-import type { Place } from "@prisma/client";
-import type { GraphQLContext } from "../../context";
-import type {
-  MutationcreatePlaceArgs,
-  PlaceInput,
-  User,
-} from "../types.generated";
-import type { PlaceModel } from "../model";
+import type { Place } from '@prisma/client';
+import type { GraphQLContext } from '../../context';
+import type { PlaceInput, User } from '../types.generated';
+import type { PlaceModel } from '../model';
 
 const getPlaces = async (_parent: User, _ctx: GraphQLContext) => {
   const places = await _ctx.prisma.place.findMany({
@@ -20,7 +16,7 @@ const createPlace = async (input: PlaceInput, _ctx: GraphQLContext) => {
     data: {
       title: input.title,
       url: input.url,
-      memo: input.memo,
+      memo: input.memo || '',
       userId: input.userId,
     },
   });
