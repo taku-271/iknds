@@ -1,0 +1,16 @@
+{
+  "name": "iknds",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "iknds",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "node",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "Github.vscode-pull-request-github",
+        "hediet.vscode-drawio"
+      ]
+    }
+  }
+}
