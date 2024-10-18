@@ -1,0 +1,17 @@
+{
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": true,
+    "sourceType": "module"
+  },
+  "plugins": ["import-access"],
+  "rules": {
+    "import-access/jsdoc": [
+      "error",
+      {
+        "defaultImportability": "package"
+      }
+    ]
+  }
+}

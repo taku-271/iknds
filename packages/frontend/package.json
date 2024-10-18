@@ -1,7 +1,27 @@
 {
   "name": "frontend",
-  "version": "1.0.0",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@yamada-ui/fontawesome": "^1.0.42",
+    "@yamada-ui/react": "^1.5.4",
+    "next": "14.2.15",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.15",
+    "eslint-plugin-import-access": "^2.2.2",
+    "typescript": "^5"
   }
 }
