@@ -1,15 +1,8 @@
-import { UIProvider } from "@yamada-ui/react";
+import { RootProvider } from "@/providers/RootProvider";
 import { ReactNode } from "react";
 
 const TopLayout = ({ children }: { children: ReactNode }) => {
-  return (
-    <html lang="ja">
-      <head></head>
-      <body>
-        <UIProvider>{children}</UIProvider>
-      </body>
-    </html>
-  );
+  return <RootProvider>{children}</RootProvider>;
 };
 
 export default TopLayout;
